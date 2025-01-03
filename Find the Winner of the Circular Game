@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        queue<int> q;
+        if(k==1){
+            return n;
+        }
+        for(int i=1;i<=n;i++){
+            q.push(i);
+        }
+        int ans=0;
+        while(!q.empty()){
+             int count=1;
+             while(count<k){
+                int top=q.front();
+                q.pop();
+                q.push(top);
+                count++;
+             }
+              ans=q.front();
+              cout<<ans;
+             q.pop();
+        }
+        return ans;
+    }
+};
