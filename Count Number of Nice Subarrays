@@ -1,0 +1,31 @@
+class Solution {
+public:
+ int subarray(vector<int>a ,int k,int n){
+      if(k<0){
+        return 0;
+      }
+    int l=0,r=0;
+    int count=0;
+    int sum=0;
+    while(r<n){
+         if(a[r]%2!=0){
+            sum++;
+         }
+         while(sum>k){
+            if(a[l]%2!=0){
+                sum--;
+            }
+            l++;
+         }
+         count+=r-l+1;
+         r++;
+    }
+    return count;
+        
+    } 
+    
+    int numberOfSubarrays(vector<int>& a, int k) {
+             int n=a.size();
+        return subarray(a,k,n)-subarray(a,k-1,n);
+    }
+};
