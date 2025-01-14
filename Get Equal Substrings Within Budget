@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int equalSubstring(string s, string t, int maxCost) {
+        vector<int> temp;
+        for(int i=0;i<s.length();i++){
+                temp.push_back(abs(s[i]-t[i]));
+        }
+        int n=temp.size();
+        int l=0,r=0;
+        int cost=0;
+        int ans=0;
+       while(r<n){
+            cost+=temp[r];
+            while(cost>maxCost){
+                cost-=temp[l];
+                l++;
+            }
+            ans=max(ans,r-l+1);
+            r++;
+       }
+        return ans;
+    }
+};
